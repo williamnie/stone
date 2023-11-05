@@ -1,0 +1,16 @@
+node_modules
+adminPage/node_modules
+adminPage/.env.local
+adminPage/.umirc.local.ts
+adminPage/src/.umi
+adminPage/src/.umi-production
+adminPage/src/.umi-test
+adminPage/.umi
+adminPage/.umi-production
+adminPage/.umi-test
+adminPage/.mfsu
+adminPage/.swc
+data/dbStore
+data/userService
+!data/
+dist

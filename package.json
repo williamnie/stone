@@ -1,0 +1,23 @@
+{
+  "name": "koa",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "src/app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "got": "^13.0.0",
+    "http-proxy-middleware": "^2.0.6",
+    "koa": "^2.14.2",
+    "koa-body": "^6.0.1",
+    "koa2-cors": "^2.0.6",
+    "level": "^8.0.0",
+    "msgpackr": "^1.9.5",
+    "nodemon": "^2.0.22",
+    "structured-clone": "^0.2.2"
+  },
+  "devDependencies": {}
+}

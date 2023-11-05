@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "author": "niezhihai <yebeixiaohai@gmail.com>",
+  "scripts": {
+    "dev": "cross-env PORT=8020 max dev",
+    "build": "cross-env max build",
+    "format": "prettier --cache --write .",
+    "postinstall": "cross-env max setup",
+    "setup": "cross-env max setup",
+    "start": "cross-env npm run dev",
+    "ana": "cross-env PORT=8020 ANALYZE=1 max build"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@ant-design/pro-components": "^2.6.35",
+    "@monaco-editor/react": "^4.6.0",
+    "@umijs/max": "^4.0.87",
+    "ahooks": "^3.7.8",
+    "antd": "^5.10.3",
+    "copy-to-clipboard": "^3.3.3",
+    "immer": "^10.0.3",
+    "monaco-editor": "^0.44.0",
+    "use-immer": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "cross-env": "^7.0.3",
+    "lint-staged": "^14.0.1",
+    "monaco-editor-webpack-plugin": "^7.1.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "prettier-plugin-packagejson": "^2.4.5",
+    "typescript": "^5.2.2"
+  }
+}

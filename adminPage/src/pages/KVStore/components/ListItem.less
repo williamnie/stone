@@ -1,0 +1,72 @@
+.listItem {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 0 20px;
+
+  &:hover {
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, .06);
+
+    .toolsWrap {
+      opacity: 1;
+    }
+  }
+
+  .infoWrap {
+    display: flex;
+    align-items: center;
+
+    .red {
+      display: block;
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .green {
+      display: block;
+      width: 8px;
+      height: 8px;
+      background-color: green;
+      border-radius: 50%;
+    }
+
+    .methodWrap {
+      width: 40px;
+      margin: 0 10px;
+    }
+
+    .routeWrap {
+      color: #4d4d4d;
+    }
+  }
+
+  .toolsWrap {
+    opacity: 0;
+    display: flex;
+
+    .iconWrap {
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+
+      &:hover {
+        background-color: #e6f4ff;
+      }
+    }
+  }
+}
+
+.select {
+  border-radius: 6px;
+  background-color: #e6f4ff;
+}

@@ -1,0 +1,23 @@
+.VirtualListRootWrap {
+  height: 100%;
+
+  .listWrap {
+    height: 100%;
+    overflow-y: auto;
+
+    .listItem {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding: 0 20px;
+
+      &:hover {
+        cursor: pointer;
+        border-radius: 6px;
+        background-color: rgba(0, 0, 0, .06);
+      }
+    }
+  }
+}

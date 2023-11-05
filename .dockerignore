@@ -1,0 +1,10 @@
+node_modules
+Dockerfile
+.git
+.gitignore
+dist
+adminPage/node_modules
+adminPage/src/.umi-production
+adminPage/src/.umi
+data/dbStore
+data/userService
