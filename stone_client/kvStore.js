@@ -1,6 +1,7 @@
 import got, { Options } from 'got'
+// import { serverConfig } from '../src/config/system.js'
 
-const prefixUrl = 'http://0.0.0.0:3000/'
+const prefixUrl = `http://0.0.0.0:3000/`
 const apis = {
     createSubLeavel: '/internal/db/createSubLeavel',
     getLeavelData: 'internal/db/getData',

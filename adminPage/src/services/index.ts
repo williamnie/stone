@@ -16,6 +16,17 @@ interface IKV {
   value: any
 }
 
+interface ILogin {
+  email: string;
+  password: string;
+}
+
+export async function loginService(data: ILogin,) {
+  return request('/api/login', {
+    method: 'POST',
+    data,
+  });
+}
 
 export async function saveFuncService(data: ISaveData,) {
   return request('/api/saveFunction', {

@@ -5,6 +5,7 @@ export default defineConfig({
   antd: {},
   model: {},
   initialState: {},
+  access: {},
   request: {},
   layout: {
     title: 'Stone',
@@ -16,7 +17,7 @@ export default defineConfig({
   chainWebpack(memo, { env, webpack }) {
     memo.plugin('monaco-editor-webpack-plugin').use(MonacoWebpackPlugin, [
       {
-        languages: ['typescript','javascript', 'json'],
+        languages: ['typescript', 'javascript', 'json'],
       }
     ]);
   },
@@ -36,21 +37,29 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      component: './Index',
+      menuRender: false
+    },
+    {
+      path: '/login',
+      component: './Login',
+      menuRender: false
     },
     {
       name: 'Funtion',
       path: '/home',
       component: './Home',
-      icon: 'FunctionOutlined'
+      icon: 'FunctionOutlined',
+      access: 'isUser',
     },
     {
       name: 'KVStore',
       path: '/kv',
       component: './KVStore',
-      icon: 'DatabaseOutlined'
+      icon: 'DatabaseOutlined',
+      access: 'isUser',
     },
   ],
-  npmClient: 'yarn',
+  npmClient: 'pnpm',
 });
 

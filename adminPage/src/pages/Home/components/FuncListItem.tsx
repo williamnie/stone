@@ -1,6 +1,8 @@
+import { useRef, } from 'react'
+import { useModel } from '@umijs/max';
 import { Tag, message } from 'antd';
 import { DeleteOutlined, CopyOutlined } from '@ant-design/icons'
-import { useModel } from '@umijs/max';
+import { useUnmount } from 'ahooks';
 import copy from 'copy-to-clipboard';
 import styles from './FuncListItem.less'
 
@@ -28,6 +30,13 @@ const FuncListItem = (props: IProps) => {
     selectFunc: model.selectFunc,
   }));
 
+  const timer = useRef<NodeJS.Timeout | undefined>(undefined)
+  const node = useRef<any>(null)
+
+  useUnmount(() => {
+    clearInterval(timer.current);
+  });
+
   return (
     <div
       className={`${styles.listItem} ${isThisItem ? styles.select : ''}`}
@@ -42,7 +51,23 @@ const FuncListItem = (props: IProps) => {
             {method}
           </Tag>
         </div>
-        <span className={styles.routeWrap}>{router}</span>
+        <span
+          ref={node}
+          className={styles.routeWrap}
+          onMouseEnter={() => {
+            clearInterval(timer.current);
+            timer.current = setInterval(() => {
+              node.current.scrollLeft += 1; // 每次滚动一个像素，可以根据需要调整速度
+              if (node.current.scrollLeft >= node.current.scrollWidth - node.current.clientWidth) {
+                clearInterval(timer.current);
+              }
+            }, 16); // 可以根据需要调整滚动速度
+          }}
+          onMouseLeave={() => {
+            clearInterval(timer.current);
+            node.current.scrollLeft = 0
+          }}
+        >{router}</span>
       </div>
       <div className={styles.toolsWrap}>
         <div

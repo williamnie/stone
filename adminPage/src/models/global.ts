@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import { useImmer } from 'use-immer';
 import { saveFuncService, getFuncListService, deleteFuncService, getFunctionDetailService } from '@/services';
 import { message } from 'antd'
@@ -20,13 +20,13 @@ interface IDeleteData {
   router: string;
   method: 'post' | 'get' | 'delete' | 'put';
 }
-
+const defaultCode = "// 默认的初始化代码,代码中必须有 return {data} \nimport { store, stone } from 'stone_client';\n\nconst func = async (ctx) => {\n\n    return {data}\n\n}\n\nstone(func)"
 const useGlobal = () => {
 
   const [state, setState] = useImmer<GlobalState>({
     router: '',
     method: 'get',
-    code: "// 默认的初始化代码,代码中必须有 return {data} \nimport { store, stone } from '../../stone_client/index.js';\n\nconst func = async (ctx) => {\n\n    return {data}\n\n}\n\nstone(func)"
+    code: defaultCode
   });
 
   const [funcList, setFuncList] = useImmer<IFunc[]>([])
@@ -36,9 +36,17 @@ const useGlobal = () => {
   const codeRef = useRef<string>('')
 
   const setRoute = useCallback((route: string) => {
-    setState((draft) => {
-      draft.router = route;
-    });
+    if (!route) {
+      setState((draft) => {
+        draft.router = route;
+        draft.code = defaultCode;
+      });
+    } else {
+      setState((draft) => {
+        draft.router = route;
+      });
+    }
+
   }, []);
 
   const setMethod = useCallback((method: TMethod) => {

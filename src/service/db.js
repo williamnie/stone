@@ -1,7 +1,4 @@
-
-const coreKey = {
-    '_routerConfig': 1
-}
+import { dbCoreSystemKey } from '../config/system.js'
 
 const createSubLeavel = async (ctx, payload) => {
     const { name } = payload
@@ -20,7 +17,7 @@ const createData = async (ctx, payload) => {
         const dbData = []
         data.forEach((ele) => {
             const { key = '', value = '' } = ele || {}
-            if (!coreKey[key] && key) {
+            if (!dbCoreSystemKey[key] && key) {
                 const item = {
                     type: 'put',
                     key: key,
@@ -37,7 +34,7 @@ const createData = async (ctx, payload) => {
         return db.batch(dbData)
     } else {
         const { key = '', value = '' } = data || {}
-        if (coreKey[key] || !key) {
+        if (dbCoreSystemKey[key] || !key) {
             return false
         }
         return db.put(key, value)
@@ -46,11 +43,9 @@ const createData = async (ctx, payload) => {
 
 const getData = async (ctx, payload) => {
     const { key, dbName } = payload
-
-    console.log('payload',payload);
     let db = ctx.db
     let result = undefined
-    if (coreKey[key] || !key) {
+    if (dbCoreSystemKey[key] || !key) {
         return null
     }
     if (dbName) {
@@ -74,7 +69,7 @@ const deleteData = async (ctx, payload) => {
     if (dbName) {
         db = ctx.db.sublevel(dbName)
     }
-    if (coreKey[key] || !key) {
+    if (dbCoreSystemKey[key] || !key) {
         return false
     }
     if (Array.isArray(key)) {
@@ -87,24 +82,11 @@ const deleteData = async (ctx, payload) => {
     }
 }
 
-/**
- * 
- * const numbers = [1, 2, 3, 4, 5];
-const evenNumbers = numbers.filter((number) => number % 2 === 0);
-const numbers = [1, 2, 3, 4, 5];
-const evenNumbers = [];
 
-for (let i = 0; i < numbers.length; i++) {
-  if (numbers[i] % 2 === 0) {
-    evenNumbers.push(numbers[i]);
-  }
-}
-
- */
 const getAllKV = async (ctx) => {
     try {
         let keys = await ctx.db.keys().all()
-        keys = keys.filter((key) => { return !coreKey[key] })
+        keys = keys.filter((key) => { return !dbCoreSystemKey[key] })
         return { code: 0, data: { list: keys }, message: '' }
     } catch (error) {
         return { code: 0, data: { list: [], }, message: error.message }

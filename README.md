@@ -16,8 +16,7 @@
 
 计划：
 
-* [ ] 重构下router部分，增加uuid，不在使用path和method作为key
-* [ ] 管理页面增加登录验证，内部api增加鉴权
+* [x] 管理页面增加登录验证，内部api增加鉴权
 * [ ] 增加Docker部署方式（已支持自己可以本地build）
 * [ ] 增加日志功能，将console.log 替换为log4js
 * [ ] 前端增加调试日志输出
@@ -46,6 +45,9 @@
 ├── src
 │   ├── app.js //koa server入口文件，里面包含了启动的逻辑
 │   ├── service //处理db和运行逻辑的代码
+│   ├── config //系统配置和用户配置
+│   ├── utils //帮助函数
+│   ├── middleware //中间件
 │   └── workerPro.js //使用work_thread构建的线程池
 ├── nodemon.json
 ├── package.json

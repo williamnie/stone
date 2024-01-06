@@ -74,7 +74,9 @@ const deleteFunction = async (ctx) => {
             return { code: 1, message }
         }
         // 删除router,直接返回404
-        ctx.router[method](router, (ctx) => { ctx.status = 404 })
+        ctx.router.stack = ctx.router.stack.filter((item) => {
+            return item.path != router
+        })
         // 删除kvstore中的router数据
         const currentRouterInfo = await ctx.db.get('_routerConfig') || {}
         const newRouterInfo = {}

@@ -21,9 +21,13 @@ const BaseInfo = () => {
     <div className={styles.baseInfo}>
       <div className={styles.routerInfo}>
         <span className={styles.label}>路由</span>
-        <Input addonBefore='/' value={router} onChange={(e) => {
-          setRoute(e.target.value)
-        }} />
+        <Input
+          addonBefore='/'
+          value={router}
+          allowClear
+          onChange={(e) => {
+            setRoute(e.target.value)
+          }} />
       </div>
       <div className={styles.methodInfo}>
         <span className={styles.label}>方法</span>
